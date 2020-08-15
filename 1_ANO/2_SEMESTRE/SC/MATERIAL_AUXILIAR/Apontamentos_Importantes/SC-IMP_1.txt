@@ -1,0 +1,11 @@
+Instruções que dão acessos à memória: push, pop e call. O leal não acede.
+
+converter uma instrução de IA-32 para RISC: 
+sub $24, %esp == subx $sp, $sp, 24
+
+ret == pop %eip; porque não existe pop do %eip
+
+Nas linhas da Stack: 4 células por linha 
+1 célula = 1 byte (8 bits)
+
+IA-32: Adress Bus = 32 bits  /  Data Bus = 2 células  / Endereços = 32 bits. Por isso, se fores buscar o conteúdo de uma célula, recebes o da seguinte quer queiras quer não

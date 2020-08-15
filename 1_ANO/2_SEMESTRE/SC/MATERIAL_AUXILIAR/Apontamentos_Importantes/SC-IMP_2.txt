@@ -1,0 +1,15 @@
+1ª informação importante: é te dito que a instrução já foi descodificada, logo considera-se que a fase fetch dessa instrução já passou.
+2º olhas para a instrução "addw %ax, 0x0a(%bx)" e verificas se há acessos à memória. Olhando para aqui vês que 0x0a(%bx) acede à memória em dois momentos: para ires buscar o valor em Mem[0x0a + %bx] e somá-lo a %ax; para escreveres o valor resultante da soma em Mem[0x0a + %bx]
+3º Calcular 0x0a + %bx :  0x0a + 0x0100 = 0x10a 
+4º Vais ter que ler uma "word" a partir do endereço 0x10a à memória (porque diz addW). Uma word são 2 bytes. Olhando para lá, vês que em 0x0108 está o byte 05, em 0x0109 está o byte 00, em 0x010a está o byte ef e em 0x010b está o byte ff. Logo, tendo em conta que em little endian colocas o valor contido no endereço menor no byte menos significativo do valor retirado, recolher ef ff resulta em 0xffef. 
+5º somar 0xffef + %ax = 0xffef + 0x0010 = 0xffff
+6º escrever esse valor em Mem[0x0a+%bx] = Mem[0x010a]
+
+Ou seja, isto traduz-se no seguinte esquema:
+
+AB  0x010a                    0x010a
+DB                    0xffef      0xffff
+CB    RD                              WR
+-------------------------------------------------------------------------------------------->tempo
+
+Assim o 2º bloco de informaçao do barramento de endereços é 0x010a e o de dados é 0xffff.
