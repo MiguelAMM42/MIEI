@@ -1,0 +1,18 @@
+decode2:
+	pushl %ebp
+	movl %esp,%ebp
+
+	/* $begin decode2-ans-s 11 */
+	movl 16(%ebp),%eax
+	movl 12(%ebp),%edx
+	subl %eax,%edx
+	movl %edx,%eax
+	imull 8(%ebp),%edx
+	sall $31,%eax
+	sarl $31,%eax
+	xorl %edx,%eax
+	/* $end decode2-ans-s 11 */
+
+	movl %ebp,%esp
+	popl %ebp
+	ret

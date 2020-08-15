@@ -1,0 +1,13 @@
+GNU gdb 19991004
+Copyright 1998 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type "show copying" to see the conditions.
+There is absolutely no warranty for GDB.  Type "show warranty" for details.
+This GDB was configured as "i386-redhat-linux"...
+Breakpoint 1 at 0x80484fa
+
+Breakpoint 1, 0x80484fa in getbuf ()
+#define 0x8048528
+#define 0xbfffefe8
+#define 0xbfffefd4

@@ -1,0 +1,24 @@
+kittyhawk> /usr/bin/time threadtime 10000
+0.02user 0.18system 0:00.19elapsed 101%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (85major+11minor)pagefaults 0swaps
+kittyhawk> /usr/bin/time forktime 10000
+0.03user 0.39system 0:00.41elapsed 100%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (3062major+8017minor)pagefaults 0swaps
+
+kittyhawk> /usr/bin/time threadtime 100000
+0.38user 1.58system 0:01.95elapsed 100%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (85major+11minor)pagefaults 0swaps
+kittyhawk> /usr/bin/time forktime 100000
+0.47user 3.67system 0:04.14elapsed 99%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (30062major+80017minor)pagefaults 0swaps
+
+kittyhawk> /usr/bin/time threadtime 100000
+3.84user 15.36system 0:19.19elapsed 100%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (85major+11minor)pagefaults 0swaps
+kittyhawk> /usr/bin/time forktime 100000
+4.39user 36.91system 0:41.29elapsed 100%CPU (0avgtext+0avgdata 0maxresident)k
+0inputs+0outputs (300062major+800017minor)pagefaults 0swaps
+
+per process overhead (create and reap): ~20,000 cycles (@~500 MHz)
+per thread overhead (create and reap): ~10,000 cycles (@~500 MHz)
+

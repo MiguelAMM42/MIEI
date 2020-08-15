@@ -1,0 +1,23 @@
+/* $begin switchbody-ans-exe-d 136 */
+080483c0 <switch_prob>:
+ 80483c0:	55                   	push   %ebp
+ 80483c1:	89 e5                	mov    %esp,%ebp
+ 80483c3:	8b 45 08             	mov    0x8(%ebp),%eax
+ 80483c6:	8d 50 ce             	lea    0xffffffce(%eax),%edx
+ 80483c9:	83 fa 05             	cmp    $0x5,%edx
+ 80483cc:	77 1d                	ja     80483eb <switch_prob+0x2b>
+ 80483ce:	ff 24 95 68 84 04 08 	jmp    *0x8048468(,%edx,4)
+ 80483d5:	c1 e0 02             	shl    $0x2,%eax
+ 80483d8:	eb 14                	jmp    80483ee <switch_prob+0x2e>
+ 80483da:	8d b6 00 00 00 00    	lea    0x0(%esi),%esi
+ 80483e0:	c1 f8 02             	sar    $0x2,%eax
+ 80483e3:	eb 09                	jmp    80483ee <switch_prob+0x2e>
+ 80483e5:	8d 04 40             	lea    (%eax,%eax,2),%eax
+ 80483e8:	0f af c0             	imul   %eax,%eax
+ 80483eb:	83 c0 0a             	add    $0xa,%eax
+ 80483ee:	89 ec                	mov    %ebp,%esp
+ 80483f0:	5d                   	pop    %ebp
+ 80483f1:	c3                   	ret    
+ 80483f2:	89 f6                	mov    %esi,%esi
+/* $end switchbody-ans-exe-d 136 */
+

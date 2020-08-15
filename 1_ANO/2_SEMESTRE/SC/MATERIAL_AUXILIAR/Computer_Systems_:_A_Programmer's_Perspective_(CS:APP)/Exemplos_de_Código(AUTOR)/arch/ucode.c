@@ -1,0 +1,133 @@
+#include "uc.h"
+
+/* Here's the microcode for the V86 Implementation */
+
+/* Name the microinstructions */
+/* This one comes first */
+#define UINIT 0
+
+/* 11-way dispatch to 16 */
+#define DISP_DEST 16
+#define UHA1 (DISP_DEST+0)
+#define URE1 (DISP_DEST+1)
+#define UAL1 (DISP_DEST+2)
+#define UJM1 (DISP_DEST+3)
+#define UCA1 (DISP_DEST+4)
+#define UPU1 (DISP_DEST+5)
+#define UPO1 (DISP_DEST+6)
+#define URR1 (DISP_DEST+7)
+#define UIR1 (DISP_DEST+8)
+#define URM1 (DISP_DEST+9)
+#define UMR1 (DISP_DEST+10)
+
+/* 2-way dispatch to 2 */
+#define BC_DEST 2
+#define UJMNT (BC_DEST+0)
+#define UJMT (BC_DEST+1)
+
+
+
+/* Pack in the rest */
+#define BASE1 1
+#define URE2  (BASE1)
+
+#define BASE2 4
+#define UCA2 (BASE2)
+#define UCA3 (UCA2+1)
+#define UCA4 (UCA3+1)
+#define UIR2 (UCA4+1)
+#define URM2 (UIR2+1)
+#define URM3 (URM2+1)
+#define UMR2 (URM3+1)
+#define UMR3 (UMR2+1)
+#define UMR4 (UMR3+1)
+#define UAL2 (UMR4+1)
+#define UPO2 (UAL2+1)
+#define UPO3 (UPO2+1)
+
+#define BASE3 27
+#define UPU2 (BASE3)
+#define UHA2 (UPU2+1)
+
+uinstr_rec ucode_old[UCNTMAX] =
+{
+  /* Initial instruction */
+  {"INIT", UINIT, BUS_PC, BUS_NONE, AD_AO, BUS_NONE, PCTN, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST },
+
+  /*** Filler ***/
+  /* RE2 */
+  {"RE2", URE2, BUS_DI, BUS_T, AD_PCAO, BUS_ESP, PCTN, ALUB_2, ALU_ADD,    MEM_IR, NS_DISP, DISP_DEST },
+
+  /**** Conditional jump dispatch to here ****/
+  /* JMNT */
+  {"JMNT", UJMNT, BUS_T, BUS_NONE, AD_PCAO, BUS_NONE, PCTN, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST },
+  /* JMT */
+  {"JMT", UJMT, BUS_DI, BUS_NONE, AD_PCAO, BUS_NONE, PCTN, ALUB_2, ALU_ADD,  MEM_IR, NS_DISP, DISP_DEST },
+
+
+  /*** Filler ***/
+  /* CA2 */
+  {"CA2", UCA2, BUS_PC, BUS_T, AD_AO, BUS_ESP, PCTN, ALUB_4, ALU_ADD, MEM_READ, NS_NORM, UCA3 },
+  /* CA3 */
+  {"CA3", UCA3, BUS_NONE, BUS_DI, AD_NONE, BUS_PC, PCTN, ALUB_1, ALU_NONE, MEM_NONE, NS_NORM, UCA4},
+  /* CA4 */
+  {"CA4", UCA4, BUS_T, BUS_ESP, AD_DO, BUS_AO, PCTN, ALUB_1, ALU_NONE, MEM_WRITE, NS_NORM, UINIT},
+  /* IR2 */
+  {"IR2", UIR2, BUS_T, BUS_DI, AD_AO, BUS_R1B, PCTY, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST },
+  /* RM2 */
+  {"RM2", URM2, BUS_R1B, BUS_DI, AD_NONE, BUS_NONE, PCTY, ALUB_B, ALU_ADD, MEM_NONE, NS_NORM, URM3},
+  /* RM3 */
+  {"RM3", URM3, BUS_R1A, BUS_T, AD_DO, BUS_AO, PCTN, ALUB_1, ALU_NONE, MEM_WRITE, NS_NORM, UINIT},
+  /* MR2 */
+  {"MR2", UMR2, BUS_R1B, BUS_DI, AD_NONE, BUS_NONE, PCTY, ALUB_B, ALU_ADD, MEM_NONE, NS_NORM, UMR3},
+  /* MR3 */
+  {"MR3", UMR3, BUS_NONE, BUS_T, AD_NONE, BUS_AO, PCTN, ALUB_1, ALU_NONE, MEM_READ, NS_NORM, UMR4},
+  /* MR4 */
+  {"MR4", UMR4, BUS_PC, BUS_DI, AD_AO, BUS_R1A, PCTN, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST},
+  /* AL2 */
+  {"AL2", UAL2, BUS_PC, BUS_T, AD_AO, BUS_R1B, PCTN, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST },
+  /* UPO2 */
+  {"PO2", UPO2, BUS_NONE, BUS_DI, AD_NONE, BUS_R1B, PCTN, ALUB_1, ALU_NONE, MEM_NONE, NS_NORM, UPO3},
+  /* UP03 */
+  {"PO3", UPO3, BUS_PC, BUS_T, AD_AO, BUS_ESP, PCTN, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST },
+
+  /** Main dispatch is to here */
+  /* HA1 */
+  {"HA1", UHA1, BUS_PC, BUS_NONE, AD_NONE, BUS_NONE, PCTN, ALUB_1, ALU_ADD, MEM_NONE, NS_NORM, UHA2 },
+  /* RE1 */
+  {"RE1", URE1, BUS_ESP, BUS_NONE, AD_AO, BUS_NONE, PCTN, ALUB_4, ALU_ADD, MEM_READ, NS_NORM, URE2},
+  /* AL1 */
+  {"AL1", UAL1, BUS_R1A, BUS_R1B, AD_NONE, BUS_NONE, PCTY, ALUB_B, ALU_FUN, MEM_NONE, NS_NORM, UAL2},
+  /* JM1 */
+  {"JM1", UJM1, BUS_T, BUS_NONE, AD_AO, BUS_NONE, PCTN, ALUB_4, ALU_ADD, MEM_READ, NS_BC, UJMNT},
+  /* CA1 */
+  {"CA1", UCA1, BUS_ESP, BUS_NONE, AD_NONE, BUS_NONE, PCTY, ALUB_M4, ALU_ADD, MEM_NONE, NS_NORM, UCA2},
+  /* PU1 */
+  {"PU1", UPU1, BUS_ESP, BUS_NONE, AD_NONE, BUS_NONE, PCTY, ALUB_M4, ALU_ADD, MEM_NONE, NS_NORM, UPU2},
+  /* PO1 */
+  {"PO1", UPO1, BUS_ESP, BUS_NONE, AD_AO, BUS_NONE, PCTY, ALUB_4, ALU_ADD, MEM_READ, NS_NORM, UPO2},
+  /* RR1 */
+  {"RR1", URR1, BUS_T, BUS_R1A, AD_AO, BUS_R1B, PCTY, ALUB_2, ALU_ADD, MEM_IR, NS_DISP, DISP_DEST},
+  /* IR1 */
+  {"IR1", UIR1, BUS_T, BUS_NONE, AD_AO, BUS_NONE, PCTN, ALUB_4, ALU_ADD, MEM_READ, NS_NORM, UIR2},
+  /* RM1 */
+  {"RM1", URM1, BUS_T, BUS_NONE, AD_AO, BUS_NONE, PCTN, ALUB_4, ALU_ADD, MEM_READ, NS_NORM, URM2},
+  /* MR1 */
+  {"MR1", UMR1, BUS_T, BUS_NONE, AD_AO, BUS_NONE, PCTN, ALUB_4, ALU_ADD, MEM_READ, NS_NORM, UMR2},
+
+  /*** Filler ***/
+  /* UPU2 */
+  {"PU2", UPU2, BUS_R1B, BUS_T, AD_DO, BUS_AO, PCTN, ALUB_1, ALU_NONE, MEM_WRITE, NS_NORM, UPO3},
+  /* UHA2 */
+  {"HA2", UHA2, BUS_NONE, BUS_NONE, AD_NONE, BUS_NONE, PCTY, ALUB_1, ALU_NONE, MEM_NONE, NS_HALT, UINIT}
+};
+
+int ucntold = 29;
+
+
+
+
+
+
+
+

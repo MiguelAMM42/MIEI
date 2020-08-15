@@ -1,0 +1,52 @@
+  0x000: 110600010000 | 	irmovl Stack,%esp
+  0x006: 110110000000 | 	irmovl 0x10, %ecx
+  0x00c: 110320000000 | 	irmovl 0x20,%ebx
+  0x012: 2133         | 	subl %ebx,%ebx
+  0x014: 400021000000 | 	call fun
+  0x01a: 1100aa0a0000 | 	irmovl 0xaaa,%eax
+  0x020: 00           | 	halt
+  0x021:              | fun:
+  0x021: 1102bb0b0000 | 	irmovl 0xbbb,%edx
+  0x027: 01           | 	ret
+                      | 
+                      | 
+  0x028: 330035000000 |         jz There
+  0x02e: 1100aa0a0000 |         irmovl 0xaaa,%eax
+  0x034: 00           |         halt
+  0x035:              | There:
+  0x035: 1100bb0b0000 |         irmovl 0xbbb,%eax
+  0x03b: 00           |         halt
+                      | 
+  0x03c: 5001         | 	pushl %ecx
+  0x03e: 6002         | 	popl  %edx
+  0x040: 00           | 	halt
+                      | 
+  0x041: 11027c000000 | 	irmovl data,%edx
+                      | 
+                      | 
+  0x047: 1023         | 	rrmovl %edx,%ebx
+  0x049: 131204000000 | 	mrmovl 4(%edx),%ecx
+  0x04f: 121208000000 | 	rmmovl %ecx,8(%edx)
+  0x055: 11010f000000 | 	irmovl 0x0F,%ecx
+  0x05b: 2131         | 	subl   %ebx,%ecx
+  0x05d: 00           | 	halt
+                      | 
+                      | 
+  0x05e: 110010000000 | 	irmovl 0x10,%eax
+  0x064: 110210000000 | 	irmovl 0x10,%edx
+  0x06a: 2102         | 	subl   %eax,%edx
+  0x06c: 400080000000 | 	call out
+  0x072: 1101aa0a0000 | 	irmovl 0xAAA,%ecx
+  0x078: 00           | 	halt
+                      | 
+  0x07c:              | 	.align 4
+  0x07c: 67452301     | data:	.long 0x01234567
+  0x080: f0debc0a     | 	.long 0x0ABCDEF0
+  0x084: 11111111     | 	.long 0x11111111
+  0x080:              | 	.pos 0x080
+  0x080: 1103bb0b0000 | out:	irmovl 0xBBB,%ebx
+  0x086: 01           | 	ret
+  0x087: 00           | 	halt
+                      | 
+  0x100:              | 	.pos 0x100
+  0x100:              | Stack:	

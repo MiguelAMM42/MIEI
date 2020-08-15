@@ -1,0 +1,40 @@
+                      | # /* $begin code-vs 0 */
+  0x000: 110600010000 | init:	irmovl Stack, %esp  	# Set up Stack pointer
+  0x006: 110700010000 | 	irmovl Stack, %ebp  	# Set up base pointer
+  0x00c: 300024000000 | 	jmp Prog		# Execute the main program
+                      | 
+                      | # Array of 4 elements
+  0x014:              | 	.align 4
+  0x014: 0d000000     | array:	.long 0xd
+  0x018: c0000000     | 	.long 0xc0
+  0x01c: 000b0000     | 	.long 0xb00
+  0x020: 00a00000     | 	.long 0xa000
+                      | 
+  0x024: 110004000000 | Prog:	irmovl $4,%eax
+  0x02a: 5000         | 	pushl %eax	# Push 4
+  0x02c: 110214000000 | 	irmovl array,%edx
+  0x032: 5002         | 	pushl %edx      # Push array
+  0x034: 40003b000000 | 	call Sum	# Sum(array, 4)
+  0x03a: 00           | 	halt
+                      | 
+                      | 	# int Sum(int *Start, int Cont)
+  0x03b:              | Sum:
+  0x03b: 5007         | 	pushl %ebp
+  0x03d: 1067         | 	rrmovl %esp,%ebp
+  0x03f: 131708000000 | 	mrmovl 8(%ebp),%ecx 	# ecx = Start
+  0x045: 13270c000000 | 	mrmovl 12(%ebp),%edx	# edx = Count
+  0x04b: 110000000000 | 	irmovl $0, %eax		# sum = 0
+  0x051: 2222         | 	andl   %edx,%edx
+  0x053: 330077000000 | 	je     End
+  0x059: 134100000000 | Loop:	mrmovl (%ecx),%esi   # get *Start
+  0x05f: 2040         | 	addl %esi,%eax       # add to sum
+  0x061: 110304000000 | 	irmovl $4,%ebx       # 
+  0x067: 2031         | 	addl %ebx,%ecx       # Sum++
+  0x069: 1103ffffffff | 	irmovl $-1,%ebx	     # 
+  0x06f: 2032         |         addl %ebx,%edx       # Count--
+  0x071: 340059000000 | 	jne    Loop          # Stop once Count reaches 0
+  0x077: 6007         | End:	popl %ebp
+  0x079: 01           | 	ret
+  0x100:              | 	.pos 0x100
+  0x100:              | Stack:	# The stack goes here
+                      | 

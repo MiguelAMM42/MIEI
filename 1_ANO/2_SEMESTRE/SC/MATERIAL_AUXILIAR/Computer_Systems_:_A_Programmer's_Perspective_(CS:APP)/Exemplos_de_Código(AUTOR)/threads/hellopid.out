@@ -1,0 +1,2 @@
+Hello from main thread!  tid:1024 pid:6024
+Hello from child thread! tid:1025 pid:6026 ppid:6025

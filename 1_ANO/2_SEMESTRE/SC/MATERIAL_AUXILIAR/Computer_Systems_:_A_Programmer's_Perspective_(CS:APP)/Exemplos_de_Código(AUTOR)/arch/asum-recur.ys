@@ -1,0 +1,45 @@
+init:	irmovl Stack, %esp  # Set up Stack pointer
+	irmovl Stack, %ebp  # Set up base pointer
+	jmp Prog
+
+# Array of 4 elements
+	.align 4
+array:	.long 0xA
+	.long 0xB0
+	.long 0xC00
+	.long 0xD000
+
+Prog:	irmovl array,%edx
+	pushl %edx
+	irmovl $4,%eax
+	pushl %eax
+	call Sum	# Sum(array, 4)
+	halt
+
+	# Sum(Start, Count)
+Sum:
+	pushl %ebp
+	rrmovl %esp,%ebp
+	irmovl 8,%eax  # Stack Frame setup
+	subl %eax,%esp
+	pushl %esi
+	pushl %ebx
+	
+
+	mrmovl 12(%ebp),%ecx # ecx = Start
+	mrmovl 8(%ebp),%edx  # edx = Count
+	irmovl $0, %eax      # sum = 0
+	andl   %edx,%edx
+	jz     End
+Loop:	mrmovl (%ecx),%esi   # get *array
+	addl %esi,%eax       # add to sum
+	irmovl $4,%ebx       # increment value
+	addl %ebx,%ecx       # array++
+	irmovl $-1,%ebx	     # decrement value
+        addl %ebx,%edx       # count--
+	jnz    Loop
+End:	popl %ebp
+	ret
+	.pos 0x100
+Stack:	# The stack goes here
+

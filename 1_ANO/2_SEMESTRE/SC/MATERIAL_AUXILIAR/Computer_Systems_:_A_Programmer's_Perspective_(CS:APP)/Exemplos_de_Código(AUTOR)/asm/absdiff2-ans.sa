@@ -1,0 +1,36 @@
+absdiff2:
+	pushl %ebp
+	movl %esp,%ebp
+	/* $begin absdiff2-ans1-s 11 */
+	movl 8(%ebp),%edx
+	movl 12(%ebp),%ecx
+	movl %edx,%eax
+	subl %ecx,%eax
+	cmpl %ecx,%edx
+	jge .L3
+	movl %ecx,%eax
+	subl %edx,%eax
+.L3:
+	/* $end absdiff2-ans1-s 11 */
+	movl %ebp,%esp
+	popl %ebp
+	ret
+
+
+absdiff2:
+	pushl %ebp
+	movl %esp,%ebp
+	/* $begin absdiff2-ans2-s 11 */
+	movl 8(%ebp),%edx	# x
+	movl 12(%ebp),%ecx	# y
+	movl %edx,%eax		
+	subl %ecx,%eax		# result = x - y
+	cmpl %ecx,%edx		# Compare x:y
+	jge .L3			# if >= goto {\bf done:}
+	movl %ecx,%eax
+	subl %edx,%eax		# result = y - x
+.L3:			      # {\bf done:}
+	/* $end absdiff2-ans2-s 11 */
+	movl %ebp,%esp
+	popl %ebp
+	ret

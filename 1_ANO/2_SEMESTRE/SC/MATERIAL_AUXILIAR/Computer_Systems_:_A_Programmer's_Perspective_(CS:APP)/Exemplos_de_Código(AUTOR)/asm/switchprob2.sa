@@ -1,0 +1,128 @@
+	.file	"switchprob2.c"
+	.version	"01.01"
+gcc2_compiled.:
+.text
+	.align 4
+.globl switch2
+	.type	 switch2,@function
+switch2:
+	pushl %ebp
+	movl %esp,%ebp
+/* $begin switch-prob2-s 11 */	
+# Setting up jump table access	
+	movl 8(%ebp),%eax  # Retrieve x
+	addl $2,%eax
+	cmpl $6,%eax
+	ja .L10		
+	jmp *.L11(,%eax,4)
+/* $end switch-prob2-s 11 */	
+	.p2align 4,,7
+.section	.rodata
+	.align 4
+	.align 4
+/* $begin switch-prob2-jt-s 20 */		
+# Jump table for switch2
+.L11:
+	.long .L4
+	.long .L10
+	.long .L5
+	.long .L6
+	.long .L8
+	.long .L8
+	.long .L9
+/* $end switch-prob2-jt-s 20 */	
+.text
+	.p2align 4,,7
+.L4:
+	movl $-2,%eax
+	jmp .L12
+	.p2align 4,,7
+.L5:
+	xorl %eax,%eax
+	jmp .L12
+	.p2align 4,,7
+.L6:
+	movl $1,%eax
+	jmp .L12
+	.p2align 4,,7
+.L8:
+	movl $3,%eax
+	jmp .L12
+	.p2align 4,,7
+.L9:
+	movl $4,%eax
+	jmp .L12
+	.p2align 4,,7
+.L10:
+	movl $7,%eax
+.L12:
+	movl %ebp,%esp
+	popl %ebp
+	ret
+.Lfe1:
+	.size	 switch2,.Lfe1-switch2
+	.align 4
+.globl switch3
+	.type	 switch3,@function
+switch3:
+	pushl %ebp
+	movl %esp,%ebp
+	pushl %ebx
+	movl 8(%ebp),%ecx
+	movl 12(%ebp),%ebx
+	movl 16(%ebp),%eax
+	cmpl $4,%eax
+	ja .L20
+	jmp *.L21(,%eax,4)
+	.p2align 4,,7
+.section	.rodata
+	.align 4
+	.align 4
+.L21:
+	.long .L15
+	.long .L16
+	.long .L17
+	.long .L18
+	.long .L19
+.text
+	.p2align 4,,7
+/* $begin switch-prob3-s 83 */	
+# The jump targets 	
+# Arguments p1 and p2 are in registers %ebx and %ecx.
+.L15:			# MODE_A
+	movl (%ecx),%edx
+	movl (%ebx),%eax
+	movl %eax,(%ecx)
+	jmp .L14
+	.p2align 4,,7	# Inserted to optimize cache performance
+.L16:			# MODE_B
+	movl (%ecx),%eax
+	addl (%ebx),%eax
+	movl %eax,(%ebx)
+	movl %eax,%edx
+	jmp .L14
+	.p2align 4,,7	# Inserted to optimize cache performance
+.L17:			# MODE_C
+	movl $15,(%ebx)
+	movl (%ecx),%edx
+	jmp .L14
+	.p2align 4,,7	# Inserted to optimize cache performance
+.L18:			# MODE_D
+	movl (%ecx),%eax
+	movl %eax,(%ebx)
+.L19:			# MODE_E
+	movl $17,%edx
+	jmp .L14
+	.p2align 4,,7	# Inserted to optimize cache performance
+.L20:
+	movl $-1,%edx
+.L14:			# default
+	movl %edx,%eax  # Set return value
+/* $end switch-prob3-s 83 */	
+	popl %ebx
+	movl %ebp,%esp
+	popl %ebp
+	ret
+.Lfe2:
+	.size	 switch3,.Lfe2-switch3
+	.ident	"GCC: (GNU) 2.95.3 20010315 (release)"
