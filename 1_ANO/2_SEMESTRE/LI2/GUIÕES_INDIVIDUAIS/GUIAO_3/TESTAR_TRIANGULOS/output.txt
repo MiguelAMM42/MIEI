@@ -1,0 +1,38 @@
+2 3 5
+NO
+ 3  4  8
+NO
+ 4  3  8
+NO
+ 5  3  2
+NO
+ 7  3  4
+NO
+ 7  4  3
+NO
+ 3  4  7
+NO
+ 3  4  8
+NO
+ 4  3  7
+NO
+ 4  3  9
+NO
+ 1  1  1
+equilatero 0.433013
+ 2  2  2
+equilatero 1.732051
+10 10 10
+equilatero 43.301270
+10 10 18
+isosceles 39.230091
+18 10 10
+isosceles 39.230091
+10 18 10
+isosceles 39.230091
+ 3  4  5
+escaleno 6.000000
+13 12  5
+escaleno 30.000000
+7 8 9
+escaleno 26.832815

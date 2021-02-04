@@ -1,0 +1,3 @@
+/home/miguelmartins/CLionProjects/PI_TP/FICHA1/TRIANGULOS/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/miguelmartins/CLionProjects/PI_TP/FICHA1/TRIANGULOS/cmake-build-debug/CMakeFiles/TRIANGULOS.dir
+/home/miguelmartins/CLionProjects/PI_TP/FICHA1/TRIANGULOS/cmake-build-debug/CMakeFiles/edit_cache.dir

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="" lang=""><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Laboratório de Algoritmia I">
+  <meta name="author" content="Laboratórios de Informática II">
+  <meta name="author" content="Ano letivo 2019/20">
+  <title>Comentários depois da avaliação do guião 5</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Comentários depois da avaliação do guião 5</h1>
+<p class="author">Laboratório de Algoritmia I</p>
+<p class="author">Laboratórios de Informática II</p>
+<p class="author">Ano letivo 2019/20</p>
+<p class="date">Last Update: 03/19/2020 18:21:32</p>
+</header>
+<h1 id="boas-práticas">Boas práticas</h1>
+<ul>
+<li><strong>Não se replica código</strong> por razões óbvias de <strong>boas práticas</strong>.</li>
+<li>Uma função ou ficheiro replicado implica muito mais trabalho ou inconsistência porque nem todas as cópias são alteradas.</li>
+<li>A maioria das vossas função estão a aceder diretamente aos dados. Isto não pode acontecer.</li>
+<li>É necessário criar uma independência entre os dados e o resto do código.</li>
+<li>Isto implica criar getters e setters para cada um dos campos da estrutura.</li>
+<li>É necessário dividir o código em três camadas: dados, lógica e interface</li>
+<li>Todas as funções da lógica do programa não mexem na estrutura de dados diretamente, só através dos getters e dos setters</li>
+<li>Nenhuma das funções da lógica do programa nem da camada de dados fazem interface com o utilizador (e.g., scanfs, printfs)</li>
+<li>Todo o interface com o utilizador é feito na camada de interface</li>
+<li>A camada de interface utiliza as funções da lógica do programa, não deveria sequer utilizar os getters e os setters</li>
+<li>Deverão ser criadas funções auxiliares com nomes sugestivos para ajudar a estruturar o programa</li>
+<li>Não escrever código repetitivo que implica o uso de copy&amp;paste, 
+em vez disso usar funções auxiliares/ciclos para diminuir esse tipo de 
+trabalho o máximo possível</li>
+</ul>
+<h1 id="comentários-depois-da-avaliação">Comentários depois da avaliação</h1>
+<p>Seguem-se alguns dos comentários comuns a várias submissões do guião 5.</p>
+<p>Genéricamente, os grupos que submeteram fizeram um bom trabalho. Contudo, encontrámos alguns problemas, nomeadamente:</p>
+<ul>
+<li>Projetos submetidos várias vezes</li>
+<li>Includes mal feitos</li>
+<li>Falta de independência entre as camadas</li>
+</ul>
+<h1 id="projetos-submetidos-várias-vezes">Projetos submetidos várias vezes</h1>
+<p>Parece-me que há grupos a criarem um projeto github por elemento e a submetê-los em separado.</p>
+<p>Pretende-se que cada grupo crie <em>um só projeto github</em>. Podem e devem existir <em>commits</em>
+ de mais do que um dos elementos do grupo visto que não é suposto que só
+ um dos elementos do grupo trabalhe. # Includes mal feitos</p>
+<p>Houve grupos a escreverem:</p>
+<pre><code>#include "./meu_ficheiro.h"</code></pre>
+<p>Quando deveriam escrever:</p>
+<pre><code>#include "meu_ficheiro.h"</code></pre>
+<h1 id="falta-de-independência-entre-as-camadas">Falta de independência entre as camadas</h1>
+<p>Este é um problema mais comum:</p>
+<ul>
+<li>Funções da camada da lógica do programa a aceder diretamente aos dados</li>
+<li>Funções da camada da interface a aceder diretamente aos dados</li>
+</ul>
+<p>Segue-se um exemplo:</p>
+<pre><code>void mostrar_tabuleiro(ESTADO *e) {
+    for (int i = 0; i &lt; 8; i++) {
+        for (int k = 0; k &lt; 8; k++) {
+            if (i == 0 &amp;&amp; k == 7)
+                printf("2");
+            else if (i == 7 &amp;&amp; k == 0)
+                printf("1");
+            else
+                printf((e-&gt;tab[i][k] == VAZIO) ? "." : (e-&gt;tab[i][k] == BRANCA) ? "*" : "#" );
+        }
+        putchar('\n');
+    }
+}</code></pre>
+<p>O problema deste caso é que agora se eu decidir mudar a estrutura dos
+ dados vou ter que mudar esta função. Mas se a função fosse:</p>
+<pre><code>void mostrar_tabuleiro(ESTADO *e) {
+    for (int i = 0; i &lt; 8; i++) {
+        for (int k = 0; k &lt; 8; k++) {
+            if (i == 0 &amp;&amp; k == 7)
+                printf("2");
+            else if (i == 7 &amp;&amp; k == 0)
+                printf("1");
+            else
+                printf(obter_casa(e, i, k) == VAZIO) ? "." : (obter_casa(e, i, k) == BRANCA) ? "*" : "#" );
+        }
+        putchar('\n');
+    }
+}</code></pre>
+<p>Então uma mudanças à estrutura dos dados já não obriga a mexer na função mostrar_tabuleiro.</p>
+<p>O mesmo aconteceu frequentemente na função <em>jogar</em> que pertence à logica do programa.</p>
+
+
+</body></html>

@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/Tarefa3.dir/main.c.o  -o Tarefa3 

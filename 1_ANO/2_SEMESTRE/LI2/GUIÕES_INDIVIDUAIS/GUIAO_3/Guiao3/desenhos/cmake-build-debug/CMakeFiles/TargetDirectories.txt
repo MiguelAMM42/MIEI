@@ -1,0 +1,3 @@
+/home/miguelmartins/CLionProjects/Guiao3/desenhos/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/miguelmartins/CLionProjects/Guiao3/desenhos/cmake-build-debug/CMakeFiles/desenhos.dir
+/home/miguelmartins/CLionProjects/Guiao3/desenhos/cmake-build-debug/CMakeFiles/edit_cache.dir

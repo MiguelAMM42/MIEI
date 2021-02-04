@@ -1,0 +1,1 @@
+/usr/bin/cc -g   CMakeFiles/desenhos.dir/principal.c.o CMakeFiles/desenhos.dir/desenhos.c.o  -o desenhos 

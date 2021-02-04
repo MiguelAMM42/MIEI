@@ -1,0 +1,3 @@
+/home/miguelmartins/CLionProjects/PI_TP/FICHA2/2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/miguelmartins/CLionProjects/PI_TP/FICHA2/2/cmake-build-debug/CMakeFiles/2.dir
+/home/miguelmartins/CLionProjects/PI_TP/FICHA2/2/cmake-build-debug/CMakeFiles/edit_cache.dir

@@ -1,0 +1,355 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1252"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble, embed[type="application/pdf"] {
+    filter: invert(100%) hue-rotate(180deg) brightness(150%) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}</style><style class="darkreader darkreader--user-agent" media="screen">html {
+    background-color: #242729 !important;
+}
+html, body, input, textarea, select, button {
+    background-color: #242729;
+}
+html, body, input, textarea, select, button {
+    border-color: #838383;
+    color: #ffffff;
+}
+a {
+    color: #4ddaff;
+}
+table {
+    border-color: #727272;
+}
+::placeholder {
+    color: #ffffff;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #7e8900 !important;
+    color: #ffffff !important;
+}
+::-webkit-scrollbar {
+    background-color: #2a2d2f;
+    color: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #474b4e;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #54595d;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #5c6065;
+}
+::-webkit-scrollbar-corner {
+    background-color: #242729;
+}
+* {
+    scrollbar-color: #2a2d2f #474b4e;
+}
+::selection {
+    background-color: #008aff !important;
+    color: #ffffff !important;
+}
+::-moz-selection {
+    background-color: #008aff !important;
+    color: #ffffff !important;
+}</style><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: #b97d00 !important;
+    border-color: #ffff1c !important;
+    color: #ffffff !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}</style></head><body><h1 id="guião-da-ficha-de-trabalho-4">Guião da Ficha de Trabalho 4</h1>
+<h2 id="introdução-aos-arrays">Introdução aos Arrays</h2>
+<p>Os arrays encontram-se entre as estruturas de dados mais antigas e importantes em programação.</p>
+<p>Em C, arrays são uma fonte muito comum de erros ou falhas de 
+segurança. Isto deve-se ao facto de estarem relacionados com o conceito
+ de apontador de memória, que tende a gerar alguma confusão. Um array 
+corresponde a um conjunto de elementos, que se encontram armazenados num
+ espaço contíguo em memória.</p>
+<p>Por exemplo, o array:</p>
+<pre><code>int arr[5] = {10, 2, 13, 64, 7};</code></pre>
+<p>Encontra-se representado em memória da seguinte forma:</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Endereço</th>
+<th style="text-align: center;">Valor</th>
+<th style="text-align: center;">Índice</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0x3bf4fbfd28</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x3bf4fbfd2c</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x3bf4fbfd30</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0x3bf4fbfd34</td>
+<td style="text-align: center;">64</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0x3bf4fbfd38</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+<p>Como tal, é possível aceder a um elemento de um array de tamanho N 
+pelo seu índice, ou seja, a sua posição no array. Este índice 
+começa em 0 e termina em N-1.</p>
+<p>Qualquer variável declarada como array é, na verdade, <strong>um apontador para o primeiro elemento do array</strong>. Ou seja, a seguinte expressão é verdadeira (onde &amp; é o operador referência, ou seja “endereço de”):</p>
+<pre><code>arr == &amp;arr[0]</code></pre>
+<p>Isto também permite o uso de <strong>aritmética de apontadores</strong>, como por exemplo (onde * é o operador de desreferência):</p>
+<pre><code>arr[2] == *(arr + 2);</code></pre>
+<p>Isto nota-se também no uso de <strong>char* para representar strings</strong>,
+ que não são mais do que arrays de caracteres, e como tal, 
+equivalentes a um apontador para o endereço de memória onde se situa o
+ primeiro caracter da string.</p>
+<pre><code>char *hello = "hello, world";</code></pre>
+<p>É equivalente a</p>
+<pre><code>char hello[] = { 'h', 'e', 'l', 'l', 'o', ',', ' ', 'w', 'o', 'r', 'l', 'd' };</code></pre>
+<p>Este acesso direto �&nbsp; memória encontra-se mais presente em 
+linguagens de mais baixo nível como C, ao contrário de linguagens como
+ Java ou C#, onde a gestão de memória é em grande parte feita 
+automaticamente. Além disso, confere uma grande vantagem de eficiência
+ a linguagens da família. Contudo, pode levar a riscos de <em>segmentation fault, stack overflow</em>, <em>heap corruption,</em> entre outros.</p>
+<p><strong>Nota: no final deste guião, são introduzidos com mais detalhe os conceitos essenciais de arrays em C.</strong></p>
+<h2 id="exercícios-propostos-para-praticar">Exercícios propostos para praticar</h2>
+<ol type="1">
+<li><p>Escreva um programa em C que seja capaz de efetuar a leitura de 
+cinco número inteiros para um array de 5 posições e de seguida os 
+mostre pela ordem inversa da leitura.</p></li>
+<li><p>Escreva um programa em C que, dado um array X de inteiros de N 
+posições, transfere para um segundo array Y apenas os valores 
+superiores �&nbsp; média dos valores em X.</p></li>
+</ol>
+<blockquote>
+<p>Ex: dado X = {1, 8, 2, 5, 5}, deve colocar em Y os valores {8, 5, 5} (porque a média é 4.2).</p>
+</blockquote>
+<ol type="1" start="3">
+<li>Desenvolva uma <strong>função</strong> em C que dadas duas strings
+ verifica se a primeira contém a segunda. Caso contenha, devolve o 
+índice da 1º string onde o conteúdo da 2º começa. Caso contrário, 
+deve devolver -1.</li>
+</ol>
+<h2 id="tarefas-de-avaliação">Tarefas de avaliação</h2>
+<p>Pretende-se que implemente em C as funções com os seguintes protótipos:</p>
+<pre><code>void soma_elemento(int *arr, int dim, int idx);
+void roda_esq(int *arr, int dim, int shifter);
+int remove_menores(int *arr, int dim, int valor);</code></pre>
+<ol type="1">
+<li><p>Desenvolva uma <strong>função</strong> em C que recebe um array
+ de inteiros, a sua dimensão e um índice qualquer (menor que a 
+dimensão). A função deverá alterar o array, onde cada elemento 
+corresponde agora �&nbsp; sua soma com o valor no índice dado. Ex: dado
+ {1, 5, 4, 3, 2}, a dimensao 5 e o índice 2, deve devolver: {5, 9, 8, 
+7, 6}, que corresponde a {1+4, 5+4, 4+4, 3+4, 2+4}.</p></li>
+<li><p>Desenvolva uma <strong>função</strong> em C que recebe um array, a sua dimensão e ainda um <em>shifter</em>
+ (qualquer inteiro maior ou igual a 0). A função deve retornar o array
+ com os seus elementos rodados para a esquerda. Ex: dado o array {1, 2, 
+3, 4, 5}, a dimensão 5 e o shifter 3, deve devolver: {4, 5, 1, 2, 3}. 
+Ex: dado o array {1, 2, 3, 4, 5}, a dimensão 5 e o shifter 7, deve 
+devolver: {3, 4, 5, 1, 2}.</p></li>
+<li><p>Desenvolva uma <strong>função</strong> em C que dado um array, a
+ sua dimensão e um valor, remova desse array os elementos menores do 
+que o valor (movendo-os para o fim do array) e devolvendo o novo tamanho
+ do array. Note que os valores mantém a sua ordem. Ex: dado o array {3,
+ 7, 2, 1, 4}, a dimensão 5 e o valor 4, deve devolver: {7, 4, 3, 2, 1}</p></li>
+<li><p>Faça um programa principal que leia o número da tarefa, a 
+dimensão do array, os seus elementos e o último argumento e que 
+imprima o array após invocar a função correspondente �&nbsp; tarefa.</p></li>
+</ol>
+<h2 id="conceitos-essenciais-de-arrays-em-c">Conceitos Essenciais de Arrays em C</h2>
+<ul>
+<li><p><strong>Declaração de Arrays.</strong> Um array em C é 
+declarado, tal como uma variável normal, com o tipo e o nome. É 
+adicionada a capacidade do array, escrevendo o número máximo de 
+elementos que esse array pode conter entre parêntesis retos – [ e ].</p>
+<ul>
+<li><p><strong>int a[5];</strong></p></li>
+<li><p><strong>int a[MAX];</strong> (usando #define MAX 5)</p></li>
+<li><p><strong>int a[n];</strong> (se n foi previamente declarado)</p></li>
+</ul></li>
+<li><p><strong>Inicialização de Arrays.</strong> Um array pode ser 
+inicializado com os valores em todas as suas posições de uma única 
+vez. Para isso, usam-se chavetas - { e } - a rodear todo os elementos 
+(cada um separado por vírgulas).</p>
+<ul>
+<li><p><strong>int a[] = {12, 1, 32, 4, 6};</strong></p></li>
+<li><p><strong>int a[3] = {12, 1, 32};</strong></p></li>
+<li><p><strong>int a[10] = {12};</strong> //OK (as outras posições não são inicializadas)</p></li>
+<li><p><strong>int a[2] = {12, 1, 32, 4};</strong></p>
+<ul>
+<li>Neste caso, o compilador vai mostrar um <strong>warning</strong>, pois é declarado um array de 2 elementos e inicializado com 4.</li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Notas:</p>
+</blockquote>
+<ul>
+<li><p>Quando se declara e inicializa um array (ao mesmo tempo), não é
+ necessário indicar o seu tamanho (o compilador tratará disso).</p></li>
+<li><p>Nada impede declarar um array numa instrução e iniciá-lo noutra a seguir.</p></li>
+<li><p><strong>Escrita em Arrays.</strong> Para atribuir um valor a uma 
+posição no &gt; array, é necessário especificar o array e o índice 
+da posição na &gt; qual queremos escrever. Atenção que em C os 
+índices dos arrays são &gt; 0-based.</p>
+<ul>
+<li><p><strong>a[0] = 25;</strong></p></li>
+<li><p><strong>a[10] = 11;</strong></p></li>
+</ul></li>
+</ul>
+<!-- -->
+<ul>
+<li><p><strong>Leitura em Arrays.</strong> Para ler um valor num índice
+ específico é necessário especificar o array e qual o índice que 
+queremos ler (novamente, os índices dos arrays são 0-based).</p>
+<ul>
+<li><strong>int x = a[4];</strong></li>
+</ul></li>
+</ul>
+<p><strong>Conceitos Essenciais de Memória em C (foco em arrays)</strong></p>
+<ul>
+<li><p><strong>Disposição em memória.</strong> A memória pode ser 
+vista como um bloco. Quando um array é declarado, o compilador aloca a 
+memória necessária para guardar todo o array.</p>
+<ul>
+<li>E.g., quando o array é declarado como sendo array de 5 inteiros, então 5*4=20 bytes são alocados na memória.</li>
+</ul></li>
+<li><p><strong>Teoria de Apontadores (simplificada).</strong> A memória
+ pode ser vista como uma cidade. Cada bloco de memória tem um endereço
+ único real, e nesse endereço fica uma casa a que chamamos variável. 
+Cada variável abriga um único inquilino, e portanto sabendo o nome da 
+casa, saberemos quem a habita. Neste contexto, os arrays são vistos 
+como prédios com um único apartamento por andar. Um único endereço 
+abriga mais do que um valor, e cada apartamento tem o seu endereço 
+único (e inquilino único). Assim, o primeiro inquilino mora no piso 0,
+ o segundo mora no piso 1, etc.</p>
+<ul>
+<li><p>Por exemplo, vejamos o array <strong>a</strong> de 5 posições. Se queremos saber quem mora no piso N, basta verificar o endereço do prédio <strong>a</strong> e subir ao piso em questão: a + N.</p>
+<ul>
+<li><strong>int a[5];</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+<blockquote>
+<p>Declara um array de 5 inteiros (um prédio de 5 apartamentos) com um endereço único <strong>a</strong>. Assim, <strong>a+0=a</strong> é o endereço para o primeiro elemento do array, e <strong>a+3</strong> é o endereço para o 4º elemento do array.</p>
+<p>O governo da cidade só conhece os endereços reais, e não o nome 
+das casas nem quem as habita. Portanto, para saber quem vive onde, e 
+onde alojar alguém, toma recurso a 2 serviços importantes: o serviço *
+ e o serviço &amp;.</p>
+<p><strong>&amp;n</strong> fornece ao governo o endereço real da casa <strong>n</strong>. <strong>*y</strong> fornece ao governo o habitante que habita no endereço real y.</p>
+<p>Para facilitar alguns processos, o governo usa apontadores, que não 
+são mais do que nomes mais bonitos que apontam para endereços reais. 
+Todos os arrays são para este governo apontadores.</p>
+</blockquote>
+<ul>
+<li><p>a == &amp;a SIM Se a for um array ou um apontador.</p></li>
+<li><p>*a == a[0] SIM Se a for um array ou um apontador.</p></li>
+<li><p>a[i] == *(a+i) SIM</p></li>
+<li><p>n == *(&amp;n) SIM</p></li>
+<li><p>int *p o governo criou um apontador p para um endereço qualquer.</p></li>
+<li><p>p = x o apontador p aponta agora para o endereço x</p></li>
+<li><p>*p == *x SIM, o habitante no endereço p e x é o mesmo!</p></li>
+</ul>
+<!-- -->
+<ul>
+<li><strong>Array argumento de Função</strong>. Até agora, argumentos de funções são passados por <strong>valor</strong>,
+ isto é, os argumentos de uma função são cópias dos valores das 
+variáveis. Isto é uma boa prática quando as variáveis ocupam um 
+espaço pequeno em memória.</li>
+</ul>
+<p>No entanto, os arrays podem ser grandes e copiar um array pode ser complexo. Assim, arrays são sempre passados por <strong>referência</strong>.
+ Passar um argumento por referência é passar �&nbsp; função o 
+endereço da variável. Deste modo, passa a existir um espaço de 
+memória partilhada cujas alterações dentro do contexto da função 
+serão vistas exteriormente.</p>
+<p>Há várias formas possíveis de declarar uma função que tem um array como parâmetro:</p>
+<pre><code>int func(int a[10]);
+int func(int *a);
+int func(int a[]);
+int func(int a[], int size);
+int func(int *a, int size);</code></pre>
+<p>A duas últimas formas são preferíveis quando foi necessário 
+percorrer o array: o endereço do array é um parâmetro e o seu tamanho
+ é outro. As outras formas podem ser utilizadas desde que não se 
+preciso de percorrer o array (ou haja alguma forma de saber quando 
+acaba, como por exemplo no caso das strings que acabam com ‘\0’).</p>
+<h1 id="funções-que-devolvem-arrays">Funções que devolvem arrays</h1>
+<pre><code>// Cenário 1
+int *func(...) {
+    int a[10];
+    ...
+    return a;
+}</code></pre>
+<pre><code>// Cenário 2
+int *func(...) {
+    int *a = (int *) malloc(tamanho * sizeof(int));
+    ...
+    return a;
+}</code></pre>
+<pre><code>// Cenário 3
+void func(int a[], int size) {
+    ...
+}</code></pre>
+<p><strong>O primeiro cenário é errado!</strong> O compilador de C irá gerar um <strong>warning</strong>
+ porque um endereço de algo declarado dentro de uma função está a 
+ser retornado. Isto é profundamente errado porque o array só <em>existe</em>
+ enquanto estamos dentro da função. Logo que sairmos da função, o 
+endereço deixa de estar protegido e pode ser reutilizado por outras 
+funções!</p>
+<p>O segundo cenário implica alocar primeiro o espaço usando <strong>malloc</strong> e depois devolve o array que foi alocado.</p>
+<p>No terceiro cenário, a função não retorna nada, mas como o array 
+foi passado por referência, ele continua a existir assim que a função
+ termina (ao contrário do primeiro caso). Relembrar que, como o array 
+é passado por referência, qualquer alteração dentro da função 
+será visível fora da função.</p>
+</body></html>

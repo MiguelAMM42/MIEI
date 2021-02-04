@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated>
+      <config projectName="TAREFA3_2" targetName="TAREFA3_2" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a2eef3f6-b589-4e39-aeaa-f8e3cb011903" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="ProjectId" id="1Xm753xnCTlBjz7YJV4VQi2hQmo" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../PI_TP/FICHA1" />
+  </component>
+  <component name="RunManager">
+    <configuration name="TAREFA3_2" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="TAREFA3_2" TARGET_NAME="TAREFA3_2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TAREFA3_2" RUN_TARGET_NAME="TAREFA3_2">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a2eef3f6-b589-4e39-aeaa-f8e3cb011903" name="Default Changelist" comment="" />
+      <created>1581639229263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581639229263</updated>
+      <workItem from="1581639233331" duration="1368000" />
+      <workItem from="1581671838054" duration="644000" />
+      <workItem from="1581672866414" duration="185000" />
+      <workItem from="1581975683599" duration="799000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="466" y="129" width="428" height="484" key="FileChooserDialogImpl" timestamp="1581976488152">
+      <screen x="0" y="0" width="1366" height="740" />
+    </state>
+    <state x="466" y="129" width="428" height="484" key="FileChooserDialogImpl/0.0.1366.740@0.0.1366.740" timestamp="1581976488152" />
+    <state x="362" y="198" key="com.intellij.ide.util.TipDialog" timestamp="1581672865378">
+      <screen x="0" y="0" width="1366" height="740" />
+    </state>
+    <state x="362" y="198" key="com.intellij.ide.util.TipDialog/0.0.1366.740@0.0.1366.740" timestamp="1581672865378" />
+  </component>
+</project>
